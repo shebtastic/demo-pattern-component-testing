@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import LabeledInput from "./component/LabeledInput";
 
 function App() {
+  const urlPattern = "https?:\\/\\/((www\\.)?google\\.(com|fr|de)|goo.gl)\\/maps(\\?.+|\\/.+)";
+  const phonePattern = "(00|+)49[0-9]{,13}";
+
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    console.log(event)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <LabeledInput type={"url"} label={"google maps link"} name={"maps-link"} pattern={urlPattern}/>
+      <LabeledInput type={"tel"} label={"phone number"} name={"phone-number"} pattern={phonePattern}/>
+      <button>Submit</button>
+    </form>
   );
 }
 
